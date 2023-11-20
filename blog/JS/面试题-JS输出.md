@@ -220,18 +220,24 @@ function foo(i) {
 **答案**
 
 > global begin:undefined
+
 > foo() begin:1
+
 > foo() begin:2
+
 > foo() begin:3
+
 > global end:3
+
 > global end:2
+
 > global end:1
 
 **解析**
 
 输出顺序：（最多有 5 个执行上下文）
 
-![](../quotes/blog/JS/面试输出题解.png)
+![](../面试输出题解.jpg)
 
 ### 10. **输出什么?**
 
