@@ -200,3 +200,88 @@ getAge();
 **解析**
 
 使用 "use strict"，你可以确保不会意外地声明全局变量。我们从来没有声明变量 age，因为我们使用 "use strict"，它将抛出一个引用错误。如果我们不使用 "use strict"，它就会工作，因为属性 age 会被添加到全局对象中了，返回 21。
+
+### 9.**(1)依次输出了什么？(2)整个过程中产生了几个执行上下文？**
+
+```js
+console.log('global begin:' + i);
+var i = 1;
+foo(1);
+function foo(i) {
+  if (i == 4) {
+    return; //i=4退出递归循环
+  }
+  console.log('foo() begin:' + i);
+  foo(i + 1); //递归调用，在函数内部调用自己
+  console.log('global end:' + i);
+}
+```
+
+**答案**
+
+> global begin:undefined
+> foo() begin:1
+> foo() begin:2
+> foo() begin:3
+> global end:3
+> global end:2
+> global end:1
+
+**解析**
+
+输出顺序：（最多有 5 个执行上下文）
+
+![](../quotes/blog/JS/面试输出题解.png)
+
+### 10. **输出什么?**
+
+```js
+function a() {}
+var a;
+console.log(typeof a); // function
+```
+
+**答案**
+
+> function
+
+**解析**
+
+先执行变量提升，后执行函数提升 undefined -> function
+
+### 11. **输出是什么？**
+
+```js
+if (!(b in window)) {
+  var b = 1;
+}
+console.log(b);
+```
+
+**答案**
+
+> undefined
+
+**解析**
+
+变量提升
+
+### 12. **输出的是什么？**
+
+```js
+var c = 1;
+function c(c) {
+  console.log(c);
+}
+c(2);
+```
+
+**答案**
+
+> 报错，c is not a function
+
+**解析**
+
+存在变量提升与函数提升，这代码块的执行顺序为
+var c -> function c () -> c=1,
+因此，c 是一个变量，值为 1
