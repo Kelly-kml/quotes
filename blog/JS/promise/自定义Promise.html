@@ -1,0 +1,55 @@
+<!--
+ * @Description: 
+ * @author: kelly
+ * @Date: 2023-11-27 14:35:17
+ * @LastEditTime: 2023-11-28 10:08:53
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="./Promise.js"></script>
+  <script>
+    // const p = new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     resolve(1)
+    //   }, 100)
+    // })
+    // p.then(
+    //   value => {
+    //     console.log('onResolved1()', value)
+    //   },
+    //   reason => {
+    //     console.log('onRejected1()', reason)
+    //   }
+    // )
+    // p.then(
+    //   value => {
+    //     console.log('onResolved2()', value)
+    //   },
+    //   reason => {
+    //     console.log('onRejected2()', reason)
+    //   }
+    // )
+
+    const p2 = Promise.reject(3)
+    const p1 = Promise.resolve(2)
+    const pRace = Promise.race([p1, p2])
+    pRace.then(
+      value => {
+        console.log('onResolved', value)
+      },
+      reason => {
+        console.log('race onReject', reason)
+      }
+    )
+  </script>
+</body>
+
+</html>

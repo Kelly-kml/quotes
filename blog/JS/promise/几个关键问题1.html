@@ -1,0 +1,51 @@
+<!--
+ * @Description: 
+ * @author: kelly
+ * @Date: 2023-11-27 10:28:06
+ * @LastEditTime: 2023-11-27 10:41:47
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+    /*
+    
+    1. 如何改变promise的状态？
+    - reslove(value)：如果当前是pedding就会变成resolved
+    - reject(reason)：如果当前是pedding就会变成rejected
+    - 抛出异常：如果当前是pedding就会变成rejected
+    2. 一个Promise指定多个成功/ 失败的回调函数，都会被调用吗？
+      当promise改变为对应状态时都会被调用
+
+    */
+    const p = new Promise((resolve, reject) => {
+      // resolve(1)// promise 变为resolved成功状态
+      // reject(2)// promise 变为rejected失败状态
+      // throw new Error('出错了') // 抛出异常，promise变为rejected失败状态，reason为抛出的error
+      throw 3//error就为3
+    })
+    p.then(
+      value => {
+      },
+      reason => {
+        console.log('reason', reason)
+      }
+    )
+    p.then(
+      value => {
+      },
+      reason => {
+        console.log('reason2', reason)
+      }
+    )
+  </script>
+</body>
+
+</html>

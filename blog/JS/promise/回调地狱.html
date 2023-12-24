@@ -1,0 +1,54 @@
+<!--
+ * @Description: 
+ * @author: kelly
+ * @Date: 2023-11-27 00:06:34
+ * @LastEditTime: 2023-11-27 00:23:15
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+
+    //回调地狱
+    doSomething(function (result) {
+      doSomething(result, function (newResult) {
+        doSomething(newResult, function (finalResult) {
+          console.log('Got the final result:' + finalResult)
+        }, failureCallback)
+      }, failureCallback)
+    }, failureCallback)
+
+    // 使用promise的链式调用来解决
+    doSomething().then(function (result) {
+      return doSomething(result)
+    })
+      .then(function (newResult) {
+        return doSomething(newResult)
+      })
+      .then(function (finalResult) {
+        console.log('Got the final result:' + finalResult)
+      })
+      .catch(failureCallback)
+
+    //async/await
+    async function request () {
+      try {
+        const result = await doSomething()
+        const newResult = await doSomething(result)
+        const finalResult = await doSomething(newResult)
+        console.log('Got the final result:' + finalResult)
+      } catch (error) {
+        failureCallback(error);
+      }
+    }
+  </script>
+</body>
+
+</html>

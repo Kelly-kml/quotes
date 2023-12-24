@@ -1,0 +1,63 @@
+<!--
+ * @Description: 
+ * @author: kelly
+ * @Date: 2023-11-27 12:33:44
+ * @LastEditTime: 2023-11-27 12:49:26
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!--
+    promise异常传透？
+
+    - 当使用promise的then链式调用时，可以在最后指定失败的回调
+    - 前面任何操作出了异常，都会传到最后失败的回调中处理
+
+  -->
+  <script type="text/javascript">
+    new Promise((resolve, reject) => {
+      // resolve(1)
+      reject(1)
+    }).then(
+      value => {
+        console.log('onResolved1()', value)
+        return 2
+      },
+      // reason => {throw reason} 不写 ，失败回调的话默认是抛出异常  
+    ).then(
+      value => {
+        console.log('onResolved2()', value)
+        return 3
+      },
+      // reason => {throw reason} 不写 ，失败回调的话默认是抛出异常
+    ).then(
+      value => {
+        console.log('onResolved3()', value)
+      },
+      // reason => {throw reason} 不写 ，失败回调的话默认是抛出异常
+      // 也可以改为 reason => Promise.reject(reason)
+    ).catch(reason => {
+      // onRejected1() 1
+      // 并不是直接跳到catch执行，是一步一步回调新的promise失败才最后执行catch
+      console.log('onRejected1()', reason)
+      return new Promise(() => { })//返回一个pedding的promise，后面的链式回调都不会执行了
+    }).then(
+      value => {
+        console.log('onResolved4()', value)
+      },
+      reason => {
+        console.log('onRejected2()', reason)
+      }
+    )
+
+  </script>
+</body>
+
+</html>
