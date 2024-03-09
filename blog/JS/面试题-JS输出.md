@@ -237,7 +237,7 @@ function foo(i) {
 
 输出顺序：（最多有 5 个执行上下文）
 
-![](../面试输出题解.jpg)
+![面试输出题解.jpg](https://s2.loli.net/2024/03/09/JFvVx75YcZ6aLsf.png)
 
 ### 10. **输出什么?**
 
