@@ -355,7 +355,7 @@ Connection: close
 
 浏览器缓存是性能优化的一个重要手段，对于理解缓存机制而言也是很重要的，我们来梳理一下吧 👇
 
-![](../%E6%B5%8F%E8%A7%88%E5%99%A8/%E7%BC%93%E5%AD%98%E5%91%BD%E4%B8%AD%E5%85%A8%E8%BF%87%E7%A8%8B.jpg)
+![.jpg](https://s2.loli.net/2024/04/03/kYIAP4XRjSCixG6.png)
 
 **浏览器缓存的全过程**：
 
